@@ -11,6 +11,7 @@ public class Usuario {
 	Connection cn = null;
 	Statement stm = null;
 	ResultSet rs = null;
+	String hola ="a";
 
 	// AGREGAR USUARIO
 	public void AgregarUsuario(String usuario, String contraseña, String email) {
