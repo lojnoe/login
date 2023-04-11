@@ -192,6 +192,8 @@ public class loginnuevo extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				String r_icono = "/login/icono.gif";
 				ImageIcon icono = new ImageIcon(getClass().getResource(r_icono));
+				
+				/*
 				if (user.comparardatos(usuariotxt.getText(), passwordField.getText())==1) {
 					JOptionPane.showMessageDialog(login, "Logueado correctamente", "LOGIN",
 							JOptionPane.INFORMATION_MESSAGE,icono);
@@ -202,7 +204,9 @@ public class loginnuevo extends JFrame {
 				}else {
 					JOptionPane.showMessageDialog(login, "Problemas en usuario ,contraseña y/o tipo", "ERROR",
 							JOptionPane.ERROR_MESSAGE);		
-				}		
+				}	
+				
+				*/
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
