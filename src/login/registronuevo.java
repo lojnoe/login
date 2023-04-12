@@ -41,9 +41,9 @@ public class registronuevo extends JFrame {
 	private int xMouse, yMouse;
 	private JTextField correotxt;
 	private JPasswordField contraseñarepetirtxt;
-	private JTextField textField;
-	private JTextField textField_1;
-	
+	private String PHcontraseña = "********";
+	private String PHcorreo = "Introduzca su correo";
+	private String PHusuario = "Introduzca su usuario";
 	
 
 	/**
@@ -172,10 +172,11 @@ public class registronuevo extends JFrame {
 		panel.add(lblNewLabel_1);
 
 		usuariotxt = new JTextField();
+		usuariotxt.setText("Introduzca su usuario");
 		usuariotxt.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				/*
+				
 				if (usuariotxt.getText().equals(PHusuario)) {
 					usuariotxt.setText("");
 					usuariotxt.setForeground(Color.white);
@@ -189,12 +190,11 @@ public class registronuevo extends JFrame {
 					contraseñarepetirtxt.setForeground(Color.gray);
 					contraseñatxt.setText(PHcontraseña);
 					contraseñatxt.setForeground(Color.gray);
-				}*/
-
+				}
 			}
 		});
 		usuariotxt.setFont(new Font("Arial", Font.PLAIN, 15));
-		usuariotxt.setForeground(new Color(255, 255, 255));
+		usuariotxt.setForeground(Color.GRAY);
 		usuariotxt.setBackground(Color.BLACK);
 		usuariotxt.setBorder(null);
 		usuariotxt.setToolTipText("");
@@ -209,10 +209,11 @@ public class registronuevo extends JFrame {
 		panel.add(lblNewLabel_1_2);
 
 		correotxt = new JTextField();
+		correotxt.setText("Introduzca su correo");
 		correotxt.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				/*
+				
 				if (correotxt.getText().equals(PHcorreo)) {
 					correotxt.setText("");
 					correotxt.setForeground(Color.white);
@@ -227,12 +228,12 @@ public class registronuevo extends JFrame {
 					contraseñarepetirtxt.setForeground(Color.gray);
 					contraseñatxt.setText(PHcontraseña);
 					contraseñatxt.setForeground(Color.gray);
-				}*/
+				}
 
 			}
 		});
 		correotxt.setToolTipText("");
-		correotxt.setForeground(Color.WHITE);
+		correotxt.setForeground(Color.GRAY);
 		correotxt.setFont(new Font("Arial", Font.PLAIN, 15));
 		correotxt.setColumns(10);
 		correotxt.setBorder(null);
@@ -283,8 +284,8 @@ public class registronuevo extends JFrame {
 					if (!contraseñarepetirtxt.getText().equals(contraseñatxt.getText())) {
 						JOptionPane.showMessageDialog(contentPane, "Las contraseñas no coinciden", "ERROR",
 								JOptionPane.ERROR_MESSAGE);
-						textField_1.setBackground(Color.red);
-						textField.setBackground(Color.red);
+						contraseñatxt.setBackground(Color.red);
+						contraseñarepetirtxt.setBackground(Color.red);
 					} else if (contraseñatxt.getText().isEmpty() && usuariotxt.getText().isEmpty()
 							&& correotxt.getText().isEmpty() && contraseñarepetirtxt.getText().isEmpty()) {
 						JOptionPane.showMessageDialog(contentPane, "Campos vacios", "ERROR",
@@ -302,8 +303,8 @@ public class registronuevo extends JFrame {
 					} else {
 						JOptionPane.showMessageDialog(contentPane, "Contraseña vacias", "ERROR",
 								JOptionPane.WARNING_MESSAGE);
-						textField_1.setBackground(Color.red);
-						textField.setBackground(Color.red);
+						contraseñatxt.setBackground(Color.red);
+						contraseñarepetirtxt.setBackground(Color.red);
 					}
 
 				}
@@ -366,11 +367,12 @@ public class registronuevo extends JFrame {
 		panel.add(botonContraseña);
 
 		contraseñatxt = new JPasswordField();
+		contraseñatxt.setText("********");
 		contraseñatxt.addMouseListener(new MouseAdapter() {
 		
 			
 			public void mousePressed(MouseEvent e) {
-				/*
+				
 				if (contraseñatxt.getText().equals(PHcontraseña)) {
 					contraseñatxt.setText("");
 					contraseñatxt.setForeground(Color.white);
@@ -385,24 +387,25 @@ public class registronuevo extends JFrame {
 					contraseñarepetirtxt.setForeground(Color.gray);
 					usuariotxt.setText(PHusuario);
 					usuariotxt.setForeground(Color.gray);
-				}*/
+				}
 			}
 		});
 		
 		
 		contraseñatxt.setBorder(null);
 		contraseñatxt.setEchoChar('*');
-		contraseñatxt.setForeground(Color.WHITE);
+		contraseñatxt.setForeground(Color.GRAY);
 		contraseñatxt.setOpaque(false);
 		contraseñatxt.setBounds(99, 288, 395, 20);
 		panel.add(contraseñatxt);
 		
 				contraseñarepetirtxt = new JPasswordField();
+				contraseñarepetirtxt.setText("********");
 				contraseñarepetirtxt.setBackground(Color.BLACK);
 				contraseñarepetirtxt.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mousePressed(MouseEvent e) {
-						/*
+						
 						if (contraseñarepetirtxt.getText().equals(PHcontraseña)) {
 							contraseñarepetirtxt.setText("");
 							contraseñarepetirtxt.setForeground(Color.white);
@@ -417,35 +420,15 @@ public class registronuevo extends JFrame {
 							contraseñatxt.setForeground(Color.gray);
 							usuariotxt.setText(PHusuario);
 							usuariotxt.setForeground(Color.gray);
-						}*/
+						}
 					}
 				});
-				
-				textField_1 = new JTextField();
-				textField_1.setToolTipText("");
-				textField_1.setForeground(Color.WHITE);
-				textField_1.setFont(new Font("Arial", Font.PLAIN, 15));
-				textField_1.setColumns(10);
-				textField_1.setBorder(null);
-				textField_1.setBackground(Color.BLACK);
-				textField_1.setBounds(99, 288, 395, 20);
-				panel.add(textField_1);
 				contraseñarepetirtxt.setOpaque(false);
-				contraseñarepetirtxt.setForeground(Color.WHITE);
+				contraseñarepetirtxt.setForeground(Color.GRAY);
 				contraseñarepetirtxt.setEchoChar('*');
 				contraseñarepetirtxt.setBorder(null);
 				contraseñarepetirtxt.setBounds(99, 365, 395, 20);
 				panel.add(contraseñarepetirtxt);
-				
-				textField = new JTextField();
-				textField.setToolTipText("");
-				textField.setForeground(Color.WHITE);
-				textField.setFont(new Font("Arial", Font.PLAIN, 15));
-				textField.setColumns(10);
-				textField.setBorder(null);
-				textField.setBackground(Color.BLACK);
-				textField.setBounds(99, 363, 395, 20);
-				panel.add(textField);
 
 	}
 }

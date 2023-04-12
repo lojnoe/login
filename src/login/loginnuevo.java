@@ -31,7 +31,9 @@ import java.io.File;
 import java.io.FileFilter;
 
 public class loginnuevo extends JFrame {
-
+	private String PHcontraseña = "********";
+	private String PHcorreo = "Introduzca su correo";
+	private String PHusuario = "Introduzca su usuario";
 	private JPanel contentPane;
 	static loginnuevo login;
 	private JTextField usuariotxt;
@@ -39,11 +41,8 @@ public class loginnuevo extends JFrame {
 	private Usuario user = new Usuario();
 
 	private int xMouse, yMouse;
-	private JTextField contraseñastxt;
-	
+
 	JFileChooser fileChooser = new JFileChooser();
-	
-	
 
 	/**
 	 * Launch the application.
@@ -158,20 +157,25 @@ public class loginnuevo extends JFrame {
 		panel.add(lblNewLabel_1);
 
 		usuariotxt = new JTextField();
+		usuariotxt.setText("Introduzca su usuario");
 		usuariotxt.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				/*
-				 * if(usuariotxt.getText().equals("Ingrese su usuario")) {
-				 * usuariotxt.setText(""); usuariotxt.setForeground(Color.white); }
-				 * 
-				 * if(passwordField.getText().isEmpty() ) { passwordField.setText("********");
-				 * passwordField.setForeground(Color.gray); }
-				 */
+
+				if (usuariotxt.getText().equals("Ingrese su usuario")) {
+					usuariotxt.setText("");
+					usuariotxt.setForeground(Color.white);
+				}
+
+				if (contraseñatxt.getText().isEmpty()) {
+					contraseñatxt.setText("********");
+					contraseñatxt.setForeground(Color.gray);
+				}
+
 			}
 		});
 		usuariotxt.setFont(new Font("Arial", Font.PLAIN, 15));
-		usuariotxt.setForeground(Color.WHITE);
+		usuariotxt.setForeground(Color.GRAY);
 		usuariotxt.setBackground(Color.BLACK);
 		usuariotxt.setBorder(null);
 		usuariotxt.setToolTipText("");
@@ -201,51 +205,49 @@ public class loginnuevo extends JFrame {
 				String r_icono = "/login/icono.gif";
 				ImageIcon icono = new ImageIcon(getClass().getResource(r_icono));
 				int respuesta = JOptionPane.showOptionDialog(null, "¿Desea iniciar sesión?", "Inicio de Sesión",
-						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Sí", "No" }, "Sí");
-				if (respuesta == JOptionPane.YES_OPTION) {
-					// Acciones para iniciar sesión
-					System.out.println("Iniciando sesión...");
-				} else {
-					// Acciones si no se desea iniciar sesión
-					System.out.println("No se inició sesión.");
-				}
-				/*
-				 * if (user.comparardatos(usuariotxt.getText(), passwordField.getText())==1) {
-				 * JOptionPane.showMessageDialog(login, "Logueado correctamente", "LOGIN",
-				 * JOptionPane.INFORMATION_MESSAGE,icono); JFrame welcome = new welcomenuevo();
-				 * welcome.setVisible(true); login.setVisible(false);
-				 * 
-				 * }else { JOptionPane.showMessageDialog(login,
-				 * "Problemas en usuario ,contraseña y/o tipo", "ERROR",
-				 * JOptionPane.ERROR_MESSAGE); }
-				 * 
-				 */
-				if (contraseñatxt.getText().isEmpty() && usuariotxt.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(contentPane, "Por favor, introduce los datos del login",
-							"Formulario vacio", JOptionPane.ERROR_MESSAGE);
-					usuariotxt.setForeground(Color.white);
-					usuariotxt.setBackground(Color.RED);
-					contraseñatxt.setForeground(Color.white);
-					contraseñastxt.setBackground(Color.RED);
-				} else {
-					if (!contraseñatxt.getText().isEmpty() && !usuariotxt.getText().isEmpty()) {
-						JOptionPane.showMessageDialog(login, "Logueado correctamente", "LOGIN",
-								JOptionPane.INFORMATION_MESSAGE, icono);
-						JFrame welcome = new welcomenuevo();
-						welcome.setVisible(true);
-						login.setVisible(false);
-					} else if (usuariotxt.getText().isEmpty()) {
-						JOptionPane.showMessageDialog(contentPane, "Introduce un usuario", "Usuario vacio",
-								JOptionPane.WARNING_MESSAGE);
-						usuariotxt.setForeground(Color.white);
-						usuariotxt.setBackground(Color.RED);
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Sí", "No" },
+						"Sí");
+				
+
+				if (user.comparardatos(usuariotxt.getText(), contraseñatxt.getText()) == 1) {
+					if (respuesta == JOptionPane.YES_OPTION) {
+						// Acciones para iniciar sesión
+						System.out.println("Iniciando sesión...");
 					} else {
-						JOptionPane.showMessageDialog(contentPane, "Introduce una contraseña", "Contraseña vacia",
-								JOptionPane.WARNING_MESSAGE);
-						contraseñatxt.setForeground(Color.white);
-						contraseñastxt.setBackground(Color.red);
+						// Acciones si no se desea iniciar sesión
+						System.out.println("No se inició sesión.");
 					}
+					JOptionPane.showMessageDialog(login, "Logueado correctamente", "LOGIN",
+							JOptionPane.INFORMATION_MESSAGE, icono);
+					JFrame welcome = new welcomenuevo();
+					welcome.setVisible(true);
+					login.setVisible(false);
+
+				} else {
+					JOptionPane.showMessageDialog(login, "Problemas en usuario ,contraseña y/o tipo", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
 				}
+
+				/*
+				 * if (contraseñatxt.getText().isEmpty() && usuariotxt.getText().isEmpty()) {
+				 * JOptionPane.showMessageDialog(contentPane,
+				 * "Por favor, introduce los datos del login", "Formulario vacio",
+				 * JOptionPane.ERROR_MESSAGE); usuariotxt.setForeground(Color.white);
+				 * usuariotxt.setBackground(Color.RED);
+				 * contraseñatxt.setForeground(Color.white);
+				 * contraseñastxt.setBackground(Color.RED); } else { if
+				 * (!contraseñatxt.getText().isEmpty() && !usuariotxt.getText().isEmpty()) {
+				 * JOptionPane.showMessageDialog(login, "Logueado correctamente", "LOGIN",
+				 * JOptionPane.INFORMATION_MESSAGE, icono); JFrame welcome = new welcomenuevo();
+				 * welcome.setVisible(true); login.setVisible(false); } else if
+				 * (usuariotxt.getText().isEmpty()) { JOptionPane.showMessageDialog(contentPane,
+				 * "Introduce un usuario", "Usuario vacio", JOptionPane.WARNING_MESSAGE);
+				 * usuariotxt.setForeground(Color.white); usuariotxt.setBackground(Color.RED); }
+				 * else { JOptionPane.showMessageDialog(contentPane, "Introduce una contraseña",
+				 * "Contraseña vacia", JOptionPane.WARNING_MESSAGE);
+				 * contraseñatxt.setForeground(Color.white);
+				 * contraseñastxt.setBackground(Color.red); } }
+				 */
 			}
 
 			@Override
@@ -289,60 +291,51 @@ public class loginnuevo extends JFrame {
 		panel.add(botonContraseña);
 
 		contraseñatxt = new JPasswordField();
+		contraseñatxt.setText("********");
 		contraseñatxt.setBackground(Color.BLACK);
 		contraseñatxt.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				/*
-				 * if(contraseñatxt.getText().equals(PHcontraseña)) { contraseñatxt.setText("");
-				 * contraseñatxt.setForeground(Color.white);
-				 * 
-				 * }
-				 * 
-				 * if(usuariotxt.getText().isEmpty()) { usuariotxt.setText(PHusuario);
-				 * usuariotxt.setForeground(Color.gray); }
-				 */
+
+				if (contraseñatxt.getText().equals(PHcontraseña)) {
+					contraseñatxt.setText("");
+					contraseñatxt.setForeground(Color.white);
+
+				}
+
+				if (usuariotxt.getText().isEmpty()) {
+					usuariotxt.setText(PHusuario);
+					usuariotxt.setForeground(Color.gray);
+				}
+
 			}
 		});
 		contraseñatxt.setBorder(null);
 		contraseñatxt.setEchoChar('*');
-		contraseñatxt.setForeground(Color.WHITE);
+		contraseñatxt.setForeground(Color.GRAY);
 		contraseñatxt.setOpaque(false);
 		contraseñatxt.setBounds(99, 313, 395, 20);
 		panel.add(contraseñatxt);
 
-		contraseñastxt = new JTextField();
-		contraseñastxt.setToolTipText("");
-		contraseñastxt.setForeground(Color.WHITE);
-		contraseñastxt.setFont(new Font("Arial", Font.PLAIN, 15));
-		contraseñastxt.setColumns(10);
-		contraseñastxt.setBorder(null);
-		contraseñastxt.setBackground(Color.BLACK);
-		contraseñastxt.setBounds(99, 313, 395, 20);
-		panel.add(contraseñastxt);
-		
 		JButton SubirFoto = new JButton("SubirFoto");
 		SubirFoto.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JFileChooser fileChooser = new JFileChooser();
-				
+
 				fileChooser.setSelectedFile(new File("foto.png"));
-				
+
 				fileChooser.setDialogTitle("Selecciona una foto");
 				int resultado = fileChooser.showOpenDialog(null);
-				
-				if (resultado == JFileChooser.APPROVE_OPTION)
-				{
-				
-				String ruta = fileChooser.getSelectedFile().getAbsolutePath();
+
+				if (resultado == JFileChooser.APPROVE_OPTION) {
+
+					String ruta = fileChooser.getSelectedFile().getAbsolutePath();
 				}
 			}
 		});
 		SubirFoto.setBounds(99, 434, 89, 23);
 		panel.add(SubirFoto);
-
-	
 
 	}
 }
