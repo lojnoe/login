@@ -124,23 +124,66 @@ public class welcomenuevo extends JFrame {
 		lblNewLabel_3.setBounds(0, 0, 43, 43);
 		panel_2.add(lblNewLabel_3);
 		
-		JLabel fondo = new JLabel("");
-		fondo.setForeground(Color.WHITE);
-		fondo.setBounds(592, 0, 314, 548);
-		fondo.setIcon(new ImageIcon(registro.class.getResource("/login/giphy.gif")));
-		panel.add(fondo);
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.BLACK);
+		panel_1.setBounds(0, 42, 906, 506);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
 		
-		JLabel lblBienvenido = new JLabel("bienvenido");
-		lblBienvenido.setForeground(Color.WHITE);
-		lblBienvenido.setFont(new Font("Star Jedi", Font.PLAIN, 26));
-		lblBienvenido.setBounds(357, 54, 208, 77);
-		panel.add(lblBienvenido);
+		JLabel lblBienvenido_1 = new JLabel("bienvenido");
+		lblBienvenido_1.setForeground(Color.WHITE);
+		lblBienvenido_1.setFont(new Font("Star Jedi", Font.PLAIN, 26));
+		lblBienvenido_1.setBounds(340, 11, 208, 77);
+		panel_1.add(lblBienvenido_1);
 		
-		JLabel lblNewLabel = new JLabel("-elige bando-");
-		lblNewLabel.setFont(new Font("Star Jedi", Font.PLAIN, 26));
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBounds(327, 258, 277, 77);
-		panel.add(lblNewLabel);
+		JLabel lblEligeBando = new JLabel("- elige bando -");
+		lblEligeBando.setForeground(Color.WHITE);
+		lblEligeBando.setFont(new Font("Star Jedi", Font.PLAIN, 26));
+		lblEligeBando.setBounds(322, 212, 277, 77);
+		panel_1.add(lblEligeBando);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(Color.BLACK);
+		panel_4.setVisible(false);
+		panel_4.setBounds(0, 0, 906, 548);
+		panel.add(panel_4);
+		
+		JLabel lblNewLabel_1_2 = new JLabel("$");
+		lblNewLabel_1_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				panel_1.setVisible(false);
+				panel_4.setVisible(true);
+			}
+		});
+		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_2.setForeground(Color.WHITE);
+		lblNewLabel_1_2.setFont(new Font("Star Jedi", Font.PLAIN, 99));
+		lblNewLabel_1_2.setBounds(607, 0, 299, 506);
+		panel_1.add(lblNewLabel_1_2);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(Color.BLACK);
+		panel_3.setVisible(false);
+		panel_3.setBounds(0, 0, 906, 548);
+		panel.add(panel_3);
+		
+		JLabel lblNewLabel_1_1_1 = new JLabel("#");
+		lblNewLabel_1_1_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				panel_1.setVisible(false);
+				panel_3.setVisible(true);
+			}
+		});
+		lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_1_1.setForeground(Color.WHITE);
+		lblNewLabel_1_1_1.setFont(new Font("Star Jedi", Font.PLAIN, 99));
+		lblNewLabel_1_1_1.setBounds(0, 0, 300, 506);
+		panel_1.add(lblNewLabel_1_1_1);
+		
+		
 		
 		
 	
