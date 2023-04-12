@@ -220,8 +220,6 @@ public class loginnuevo extends JFrame {
 				 * JOptionPane.ERROR_MESSAGE); }
 				 * 
 				 */
-				
-				/*
 				if (contraseñatxt.getText().isEmpty() && usuariotxt.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(contentPane, "Por favor, introduce los datos del login",
 							"Formulario vacio", JOptionPane.ERROR_MESSAGE);
@@ -247,7 +245,7 @@ public class loginnuevo extends JFrame {
 						contraseñatxt.setForeground(Color.white);
 						contraseñastxt.setBackground(Color.red);
 					}
-				}*/
+				}
 			}
 
 			@Override
