@@ -32,6 +32,7 @@ public class welcomenuevo extends JFrame {
 	private Usuario user = new Usuario();
 	
 	private int xMouse,yMouse;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -147,8 +148,14 @@ public class welcomenuevo extends JFrame {
 		panel_4.setVisible(false);
 		panel_4.setBounds(0, 0, 906, 548);
 		panel.add(panel_4);
+		panel_4.setLayout(null);
+		
+		table = new JTable();
+		table.setBounds(453, 335, -249, -330);
+		panel_4.add(table);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("$");
+		lblNewLabel_1_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblNewLabel_1_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -175,6 +182,7 @@ public class welcomenuevo extends JFrame {
 		panel_3.setVisible(false);
 		panel_3.setBounds(0, 0, 906, 548);
 		panel.add(panel_3);
+		panel_3.setLayout(null);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("#");
 		lblNewLabel_1_1_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
