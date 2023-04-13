@@ -155,6 +155,14 @@ public class welcomenuevo extends JFrame {
 				panel_1.setVisible(false);
 				panel_4.setVisible(true);
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblNewLabel_1_2.setForeground(Color.gray);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblNewLabel_1_2.setForeground(Color.white);
+			}
 		});
 		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_2.setForeground(Color.WHITE);
@@ -169,12 +177,21 @@ public class welcomenuevo extends JFrame {
 		panel.add(panel_3);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("#");
+		lblNewLabel_1_1_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblNewLabel_1_1_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
 				panel_1.setVisible(false);
 				panel_3.setVisible(true);
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblNewLabel_1_1_1.setForeground(Color.gray);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblNewLabel_1_1_1.setForeground(Color.white);
 			}
 		});
 		lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
