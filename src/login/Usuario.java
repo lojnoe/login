@@ -5,13 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Usuario {
 	Conexion conexion = new Conexion();
 	Connection cn = null;
 	Statement stm = null;
 	ResultSet rs = null;
-	String hola ="a";
+	String hola = "a";
 
 	// AGREGAR USUARIO
 	public void AgregarUsuario(String usuario, String contraseña, String email) {
@@ -155,10 +159,10 @@ public class Usuario {
 			PreparedStatement stm = cn.prepareStatement("SELECT * FROM usuario WHERE USUARIO = ? AND CONTRASEÑA=? ");
 			stm.setString(1, usuario);
 			stm.setString(2, contraseña);
-			
+
 			rs = stm.executeQuery();
-			if(rs.next()) {
-				resultado =1;
+			if (rs.next()) {
+				resultado = 1;
 			}
 
 		} catch (SQLException e) {
@@ -184,4 +188,60 @@ public class Usuario {
 		return resultado;
 	}
 
+	/*
+	 * public void mostrar(String a) { String sql = "SELECT * FROM usuario";
+	 * 
+	 * Conexion con = new Conexion(); Connection conexion = con.conectar();
+	 * DefaultTableModel model = new DefaultTableModel(); model.addColumn("ID");
+	 * model.addColumn("Nombre");
+	 * 
+	 * String[] dato = new String[1]; ResultSet rs = null; try { conexion =
+	 * con.conectar(); PreparedStatement stm2 = conexion.prepareStatement(sql); rs =
+	 * stm2.executeQuery(); while (rs.next()) { Object[] row = new Object[2]; row[0]
+	 * = rs.getInt("id"); row[1] = rs.getString("nombre");
+	 * 
+	 * model.addRow(row); }
+	 * 
+	 * } catch (SQLException e) { e.printStackTrace(); }
+	 * 
+	 * }
+	 */
+	public DefaultTableModel rellenar() {
+		
+		DefaultTableModel modelo = new DefaultTableModel();
+		try {
+			String consulta = "SELECT id, Usuario FROM usuario;";
+			cn = conexion.conectar();
+			PreparedStatement stm = cn.prepareStatement(consulta);
+			rs = stm.executeQuery(consulta);
+			
+			while (rs.next()) {
+                int id = rs.getInt("id");
+                String Usuario = rs.getString("Usuario");
+                Object[] fila = {id, Usuario};
+                modelo.addRow(fila);
+            }
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+
+				if (stm != null) {
+					stm.close();
+				}
+
+				if (cn != null) {
+					cn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return modelo;
+	}
 }
