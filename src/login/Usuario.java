@@ -207,21 +207,62 @@ public class Usuario {
 	 * }
 	 */
 	public DefaultTableModel rellenar() {
-		
-		DefaultTableModel modelo = new DefaultTableModel();
+		String filaTABLA[] = { "ID,NOMBRE" };
+		DefaultTableModel modelo = new DefaultTableModel(filaTABLA, 0);
 		try {
 			String consulta = "SELECT id, Usuario FROM usuario;";
 			cn = conexion.conectar();
 			PreparedStatement stm = cn.prepareStatement(consulta);
 			rs = stm.executeQuery(consulta);
-			
+
 			while (rs.next()) {
-                int id = rs.getInt("id");
-                String Usuario = rs.getString("Usuario");
-                Object[] fila = {id, Usuario};
-                modelo.addRow(fila);
-            }
-			
+				int id = rs.getInt("id");
+				String Usuario = rs.getString("Usuario");
+				Object[] fila = { id, Usuario };
+				modelo.addRow(fila);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+
+				if (stm != null) {
+					stm.close();
+				}
+
+				if (cn != null) {
+					cn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return modelo;
+	}
+
+	public DefaultTableModel rellenarTabla() {
+		String[] columnas = { "id", "Usuario", "Contraseña", "Email" };
+		DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+		try {
+			String consulta = "SELECT id, Usuario, Contraseña, Email FROM usuario";
+			cn = conexion.conectar();
+			PreparedStatement stm2 = cn.prepareStatement(consulta);
+			rs = stm2.executeQuery(consulta);
+			modelo.addRow(columnas);
+			while (rs.next()) {
+				int TAG = rs.getInt("id");
+				String Usuario = rs.getString("Usuario");
+				String Contraseña = rs.getString("Contraseña");
+				String Email = rs.getString("Email");
+				Object[] fila = { TAG, Usuario, Contraseña, Email };
+				modelo.addRow(fila);
+			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 

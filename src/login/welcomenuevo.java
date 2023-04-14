@@ -227,7 +227,7 @@ public class welcomenuevo extends JFrame {
 		setVisible(true);
 		tabla.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "ID", "NAME" }));
 		tabla.setBounds(254, 336, 388, 116);
-		tabla.setModel(user.rellenar());
+		tabla.setModel(user.rellenarTabla());
 		panel_1.add(tabla);
 
 	}
