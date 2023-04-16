@@ -25,6 +25,8 @@ import javax.swing.table.DefaultTableModel;
 
 import com.mysql.cj.xdevapi.Statement;
 import javax.swing.border.EtchedBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.JInternalFrame;
 
 public class welcomenuevo extends JFrame {
 
@@ -33,13 +35,13 @@ public class welcomenuevo extends JFrame {
 	private Usuario user = new Usuario();
 
 	private int xMouse, yMouse;
-	private JTable table;
 	private JTable tabla;
+	private JTable table;
+	private JTable table_1;
 
 	/**
 	 * Launch the application.
 	 */
-	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -132,6 +134,50 @@ public class welcomenuevo extends JFrame {
 		lblNewLabel_3.setBounds(0, 0, 43, 43);
 		panel_2.add(lblNewLabel_3);
 
+		JPanel panel_3 = new JPanel();
+		panel_3.setVisible(false);
+		panel_3.setBackground(Color.BLACK);
+		panel_3.setBounds(0, 0, 906, 548);
+		panel.add(panel_3);
+		panel_3.setLayout(null);
+
+		table_1 = new JTable();
+		table_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+		table_1.setBounds(51, 169, 495, 336);
+		table_1.setModel(user.rellenarTablapersonajes());
+		panel_3.add(table_1);
+
+		JLabel lblPersonajesOscuros = new JLabel("personajes oscuros");
+		lblPersonajesOscuros.setForeground(Color.WHITE);
+		lblPersonajesOscuros.setFont(new Font("Star Jedi", Font.PLAIN, 22));
+		lblPersonajesOscuros.setBounds(143, 79, 322, 69);
+		panel_3.add(lblPersonajesOscuros);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setVisible(true);
+
+		JPanel panel_4 = new JPanel();
+		panel_4.setBorder(new CompoundBorder());
+		panel_4.setVisible(false);
+		panel_4.setBackground(Color.BLACK);
+		panel_4.setBounds(0, 0, 906, 548);
+		panel.add(panel_4);
+		panel_4.setLayout(null);
+
+		table = new JTable();
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+		table.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		table.setBounds(34, 182, 495, 336);
+		table.setModel(user.rellenarTablapersonajesl());
+		panel_4.add(table);
+
+		JLabel lblNewLabel = new JLabel("personajes luminosos");
+		lblNewLabel.setFont(new Font("Star Jedi", Font.PLAIN, 22));
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBounds(139, 102, 322, 69);
+		panel_4.add(lblNewLabel);
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.BLACK);
 		panel_1.setBounds(0, 42, 906, 506);
@@ -149,17 +195,6 @@ public class welcomenuevo extends JFrame {
 		lblEligeBando.setFont(new Font("Star Jedi", Font.PLAIN, 26));
 		lblEligeBando.setBounds(322, 212, 277, 77);
 		panel_1.add(lblEligeBando);
-
-		JPanel panel_4 = new JPanel();
-		panel_4.setVisible(false);
-		panel_4.setBackground(Color.BLACK);
-		panel_4.setBounds(0, 0, 906, 548);
-		panel.add(panel_4);
-		panel_4.setLayout(null);
-
-		table = new JTable();
-		table.setBounds(453, 335, -249, -330);
-		panel_4.add(table);
 
 		JLabel lblNewLabel_1_2 = new JLabel("$");
 		lblNewLabel_1_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -185,13 +220,6 @@ public class welcomenuevo extends JFrame {
 		lblNewLabel_1_2.setFont(new Font("Star Jedi", Font.PLAIN, 99));
 		lblNewLabel_1_2.setBounds(607, 0, 299, 506);
 		panel_1.add(lblNewLabel_1_2);
-
-		JPanel panel_3 = new JPanel();
-		panel_3.setVisible(false);
-		panel_3.setBackground(Color.BLACK);
-		panel_3.setBounds(0, 0, 906, 548);
-		panel.add(panel_3);
-		panel_3.setLayout(null);
 
 		JLabel lblNewLabel_1_1_1 = new JLabel("#");
 		lblNewLabel_1_1_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -222,12 +250,9 @@ public class welcomenuevo extends JFrame {
 		// Agregar JTable al JFrame
 		tabla = new JTable();
 		tabla.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
-		setVisible(true);
 		tabla.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "ID", "NAME" }));
 		tabla.setBounds(254, 336, 388, 116);
-		tabla.setModel(user.rellenarTabla());
+		tabla.setModel(user.rellenarTablapersonajesl());
 		panel_1.add(tabla);
 
 	}
