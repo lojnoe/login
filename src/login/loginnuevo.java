@@ -162,7 +162,7 @@ public class loginnuevo extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 
-				if (usuariotxt.getText().equals("Ingrese su usuario")) {
+				if (usuariotxt.getText().equals("Introduzca su usuario")) {
 					usuariotxt.setText("");
 					usuariotxt.setForeground(Color.white);
 				}

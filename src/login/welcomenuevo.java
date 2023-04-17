@@ -1,5 +1,6 @@
 package login;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
@@ -27,6 +28,8 @@ import com.mysql.cj.xdevapi.Statement;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.JInternalFrame;
+import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class welcomenuevo extends JFrame {
 
@@ -38,6 +41,8 @@ public class welcomenuevo extends JFrame {
 	private JTable tabla;
 	private JTable table;
 	private JTable table_1;
+	private JTextField nombre;
+	private JTextField id;
 
 	/**
 	 * Launch the application.
@@ -141,38 +146,14 @@ public class welcomenuevo extends JFrame {
 		panel.add(panel_3);
 		panel_3.setLayout(null);
 
+		
+
+		
 		table_1 = new JTable();
 		table_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		table_1.setBounds(51, 169, 495, 336);
-		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"id", "Nombre", "Planeta", "Raza", "Edad"},
-				{new Integer(1), "Darth Vader", "Desconocido", "Humano", "46"},
-				{new Integer(2), "Emperador Palpatine", "Naboo", "Humano", null},
-				{new Integer(3), "Kylo Ren", "Desconocido", "Humano", "29"},
-				{new Integer(4), "Darth Maul", "Dathomir", "Zabrak", null},
-				{new Integer(5), "Asajj Ventress", "Dathomir", "Dathomirian", null},
-				{new Integer(6), "Count Dooku", "Serenno", "Humano", null},
-				{new Integer(7), "General Grievous", "Kalee", "Kaleesh", null},
-				{new Integer(8), "Boba Fett", "Kamino", "Humano", "33"},
-				{new Integer(9), "Jango Fett", "Concord Dawn", "Humano", null},
-				{new Integer(10), "Director Krennic", "Fresia", "Humano", null},
-				{new Integer(11), "Galen Erso", "Coruscant", "Humano", null},
-				{new Integer(12), "Snoke", "Desconocido", "Desconocido", null},
-				{new Integer(13), "Grand Moff Tarkin", "Eriadu", "Humano", null},
-				{new Integer(14), "Admiral Piett", "Desconocido", "Humano", null},
-				{new Integer(15), "Supreme Leader Snoke", "Desconocido", "Desconocido", null},
-				{new Integer(16), "Darth Sidious", "Naboo", "Humano", null},
-				{new Integer(17), "General Hux", "Arkanis", "Humano", null},
-				{new Integer(18), "Darth Bane", "Apatros", "Humano", null},
-				{new Integer(19), "General Hux", "Arkanis", "Humano", null},
-				{new Integer(20), "Savage Opress", "Dathomir", "Dathomirian", null},
-			},
-			new String[] {
-				"id", "Nombre", "Planeta", "Raza", "Edad"
-			}
-		));
+		table_1.setModel(user.rellenarTablapersonajes());
 		panel_3.add(table_1);
 
 		JLabel lblPersonajesOscuros = new JLabel("personajes oscuros");
@@ -181,7 +162,21 @@ public class welcomenuevo extends JFrame {
 		lblPersonajesOscuros.setBounds(143, 79, 322, 69);
 		panel_3.add(lblPersonajesOscuros);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
+		setLocationRelativeTo(table_1);
+		
+		nombre = new JTextField();
+		nombre.setBounds(701, 166, 86, 20);
+		panel_3.add(nombre);
+		nombre.setColumns(10);
+		
+		id = new JTextField();
+		id.setBounds(701, 255, 86, 20);
+		panel_3.add(id);
+		id.setColumns(10);
+		
+		JButton boton = new JButton("Eliminar");
+		boton.setBounds(701, 366, 89, 23);
+		panel_3.add(boton);
 		setVisible(true);
 
 		JPanel panel_4 = new JPanel();
