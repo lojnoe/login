@@ -145,7 +145,34 @@ public class welcomenuevo extends JFrame {
 		table_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		table_1.setBounds(51, 169, 495, 336);
-		table_1.setModel(user.rellenarTablapersonajes());
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"id", "Nombre", "Planeta", "Raza", "Edad"},
+				{new Integer(1), "Darth Vader", "Desconocido", "Humano", "46"},
+				{new Integer(2), "Emperador Palpatine", "Naboo", "Humano", null},
+				{new Integer(3), "Kylo Ren", "Desconocido", "Humano", "29"},
+				{new Integer(4), "Darth Maul", "Dathomir", "Zabrak", null},
+				{new Integer(5), "Asajj Ventress", "Dathomir", "Dathomirian", null},
+				{new Integer(6), "Count Dooku", "Serenno", "Humano", null},
+				{new Integer(7), "General Grievous", "Kalee", "Kaleesh", null},
+				{new Integer(8), "Boba Fett", "Kamino", "Humano", "33"},
+				{new Integer(9), "Jango Fett", "Concord Dawn", "Humano", null},
+				{new Integer(10), "Director Krennic", "Fresia", "Humano", null},
+				{new Integer(11), "Galen Erso", "Coruscant", "Humano", null},
+				{new Integer(12), "Snoke", "Desconocido", "Desconocido", null},
+				{new Integer(13), "Grand Moff Tarkin", "Eriadu", "Humano", null},
+				{new Integer(14), "Admiral Piett", "Desconocido", "Humano", null},
+				{new Integer(15), "Supreme Leader Snoke", "Desconocido", "Desconocido", null},
+				{new Integer(16), "Darth Sidious", "Naboo", "Humano", null},
+				{new Integer(17), "General Hux", "Arkanis", "Humano", null},
+				{new Integer(18), "Darth Bane", "Apatros", "Humano", null},
+				{new Integer(19), "General Hux", "Arkanis", "Humano", null},
+				{new Integer(20), "Savage Opress", "Dathomir", "Dathomirian", null},
+			},
+			new String[] {
+				"id", "Nombre", "Planeta", "Raza", "Edad"
+			}
+		));
 		panel_3.add(table_1);
 
 		JLabel lblPersonajesOscuros = new JLabel("personajes oscuros");
