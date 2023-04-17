@@ -152,7 +152,6 @@ public class Usuario {
 		}
 	}
 
-	
 	// COMPARA DATOS PARA EL MENU DE LOGIN
 	public int comparardatos(String usuario, String contraseña) {
 		int resultado = 0;
@@ -208,11 +207,8 @@ public class Usuario {
 	 * 
 	 * }
 	 */
-	
-	
-	
-	
-	//rellenar la tabla usuario
+
+	// rellenar la tabla usuario
 
 	public DefaultTableModel rellenarTabla() {
 		String[] columnas = { "id", "Usuario", "Contraseña", "Email" };
@@ -254,93 +250,158 @@ public class Usuario {
 		}
 		return modelo;
 	}
-	
-	
-	//rellenar la tabla personajes luminosos
 
-		public DefaultTableModel rellenarTablapersonajesl() {
-			String[] columnas = { "id", "Nombre", "Planeta","Raza", "Edad" };
-			DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
-			try {
-				String consulta = "SELECT id, nombre, planeta_natal,raza, edad FROM personajes_luminoso";
-				cn = conexion.conectar();
-				PreparedStatement stm2 = cn.prepareStatement(consulta);
-				rs = stm2.executeQuery(consulta);
-				modelo.addRow(columnas);
-				while (rs.next()) {
-					int id = rs.getInt("id");
-					String nombre = rs.getString("nombre");
-					String planeta = rs.getString("planeta_natal");
-					String raza = rs.getString("raza");
-					String edad = rs.getString("edad");
-					Object[] fila = { id, nombre, planeta, raza,edad };
-					modelo.addRow(fila);
-				}
+	// rellenar la tabla personajes luminosos
 
-			} catch (SQLException e) {
-				e.printStackTrace();
-
-			} finally {
-				try {
-					if (rs != null) {
-						rs.close();
-					}
-
-					if (stm != null) {
-						stm.close();
-					}
-
-					if (cn != null) {
-						cn.close();
-					}
-				} catch (Exception e2) {
-					e2.printStackTrace();
-				}
+	public DefaultTableModel rellenarTablapersonajesl() {
+		String[] columnas = { "id", "Nombre", "Planeta", "Raza", "Edad", };
+		DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+		try {
+			String consulta = "SELECT id, nombre, planeta_natal,raza, edad FROM personajes where luminoso = true";
+			cn = conexion.conectar();
+			PreparedStatement stm2 = cn.prepareStatement(consulta);
+			rs = stm2.executeQuery(consulta);
+			modelo.addRow(columnas);
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String nombre = rs.getString("nombre");
+				String planeta = rs.getString("planeta_natal");
+				String raza = rs.getString("raza");
+				String edad = rs.getString("edad");
+				Object[] fila = { id, nombre, planeta, raza, edad };
+				modelo.addRow(fila);
 			}
-			return modelo;
-		}
-		
-		//rellenar la tabla personajes oscuros
 
-				public DefaultTableModel rellenarTablapersonajes() {
-					String[] columnas = { "id", "Nombre", "Planeta","Raza", "Edad" };
-					DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
-					try {
-						String consulta = "SELECT id, nombre, planeta_natal,raza, edad FROM personajes_oscuridad";
-						cn = conexion.conectar();
-						PreparedStatement stm2 = cn.prepareStatement(consulta);
-						rs = stm2.executeQuery(consulta);
-						modelo.addRow(columnas);
-						while (rs.next()) {
-							int id = rs.getInt("id");
-							String nombre = rs.getString("nombre");
-							String planeta = rs.getString("planeta_natal");
-							String raza = rs.getString("raza");
-							String edad = rs.getString("edad");
-							Object[] fila = { id, nombre, planeta, raza,edad };
-							modelo.addRow(fila);
-						}
+		} catch (SQLException e) {
+			e.printStackTrace();
 
-					} catch (SQLException e) {
-						e.printStackTrace();
-
-					} finally {
-						try {
-							if (rs != null) {
-								rs.close();
-							}
-
-							if (stm != null) {
-								stm.close();
-							}
-
-							if (cn != null) {
-								cn.close();
-							}
-						} catch (Exception e2) {
-							e2.printStackTrace();
-						}
-					}
-					return modelo;
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
 				}
+
+				if (stm != null) {
+					stm.close();
+				}
+
+				if (cn != null) {
+					cn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return modelo;
+	}
+
+	// rellenar la tabla personajes oscuros
+
+	public DefaultTableModel rellenarTablapersonajes() {
+		String[] columnas = { "id", "Nombre", "Planeta", "Raza", "Edad", };
+		DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+		try {
+			String consulta = "SELECT id, nombre, planeta_natal,raza, edad FROM personajes where luminoso = false";
+			cn = conexion.conectar();
+			PreparedStatement stm2 = cn.prepareStatement(consulta);
+			rs = stm2.executeQuery(consulta);
+			modelo.addRow(columnas);
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String nombre = rs.getString("nombre");
+				String planeta = rs.getString("planeta_natal");
+				String raza = rs.getString("raza");
+				String edad = rs.getString("edad");
+				Object[] fila = { id, nombre, planeta, raza, edad };
+				modelo.addRow(fila);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+
+				if (stm != null) {
+					stm.close();
+				}
+
+				if (cn != null) {
+					cn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return modelo;
+	}
+
+	public int comparardatospersonajes(String id, String nombre) {
+		int resultado = 0;
+		try {
+			cn = conexion.conectar();
+			PreparedStatement stm = cn.prepareStatement("SELECT * FROM personajes WHERE id = ? AND nombre=? ");
+			stm.setString(1, id);
+			stm.setString(2, nombre);
+
+			rs = stm.executeQuery();
+			if (rs.next()) {
+				resultado = 1;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+
+				if (stm != null) {
+					stm.close();
+				}
+
+				if (cn != null) {
+					cn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return resultado;
+	}
+	public void borrarDatosPersonajes(String id, String nombre) {
+		try {
+			cn = conexion.conectar();
+			PreparedStatement stm2 = cn.prepareStatement("DELETE FROM personajes  WHERE id = ? AND nombre=? ");
+			stm2.setString(1, id);
+			stm2.setString(2, nombre);
+
+			stm2.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+
+				if (stm != null) {
+					stm.close();
+				}
+
+				if (cn != null) {
+					cn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 }

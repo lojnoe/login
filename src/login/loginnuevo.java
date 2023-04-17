@@ -32,7 +32,7 @@ import java.io.FileFilter;
 
 public class loginnuevo extends JFrame {
 	private String PHcontraseña = "********";
-	private String PHcorreo = "Introduzca su correo";
+	
 	private String PHusuario = "Introduzca su usuario";
 	private JPanel contentPane;
 	static loginnuevo login;
@@ -221,7 +221,7 @@ public class loginnuevo extends JFrame {
 							JOptionPane.INFORMATION_MESSAGE, icono);
 					JFrame welcome = new welcomenuevo();
 					welcome.setVisible(true);
-					login.setVisible(false);
+					
 
 				} else {
 					JOptionPane.showMessageDialog(login, "Problemas en usuario ,contraseña y/o tipo", "ERROR",
@@ -248,6 +248,7 @@ public class loginnuevo extends JFrame {
 				 * contraseñatxt.setForeground(Color.white);
 				 * contraseñastxt.setBackground(Color.red); } }
 				 */
+				login.setVisible(false);
 			}
 
 			@Override
