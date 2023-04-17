@@ -35,7 +35,7 @@ import javax.swing.border.BevelBorder;
 public class welcomenuevo extends JFrame {
 
 	private JPanel contentPane;
-	static welcomenuevo welcome = new welcomenuevo();;
+	static welcomenuevo welcome;
 	private loginnuevo login = new loginnuevo();
 	private Usuario user = new Usuario();
 
@@ -49,6 +49,10 @@ public class welcomenuevo extends JFrame {
 	JPanel panel_3 = new JPanel();
 	JPanel panel_4_1_1 = new JPanel();
 	JPanel panel_1 = new JPanel();
+	JPanel panel_4 = new JPanel();
+	private JTable table_2;
+	private JTextField nombreusuario;
+	private JTextField contraseñausuario;
 
 	/**
 	 * Launch the application.
@@ -144,8 +148,9 @@ public class welcomenuevo extends JFrame {
 		lblNewLabel_3.setForeground(Color.WHITE);
 		lblNewLabel_3.setBounds(0, 0, 43, 43);
 		panel_2.add(lblNewLabel_3);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
+
+		panel_4_1_1.setBorder(new CompoundBorder());
+		panel_4_1_1.setVisible(false);
 
 		panel_1.setBackground(Color.BLACK);
 		panel_1.setBounds(0, 42, 906, 506);
@@ -222,6 +227,7 @@ public class welcomenuevo extends JFrame {
 				welcome.setVisible(false);
 				login.setVisible(true);
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				lblNewLabel_2.setForeground(Color.gray);
@@ -240,106 +246,28 @@ public class welcomenuevo extends JFrame {
 		lblNewLabel_2.setBounds(322, 413, 277, 14);
 		panel_1.add(lblNewLabel_2);
 
-		panel_3.setVisible(false);
-		panel_3.setBackground(Color.BLACK);
-		panel_3.setBounds(0, 0, 906, 548);
-		panel.add(panel_3);
-		panel_3.setLayout(null);
-
-		table_1 = new JTable();
-		table_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-		table_1.setBounds(51, 169, 495, 336);
-		table_1.setModel(user.rellenarTablapersonajes());
-		panel_3.add(table_1);
-
-		JLabel lblNewLabel_3_2_1 = new JLabel(" →");
-		lblNewLabel_3_2_1.addMouseListener(new MouseAdapter() {
+		JLabel lblNewLabel_2_1 = new JLabel("ver usuarios registrados");
+		lblNewLabel_2_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblNewLabel_2_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				panel_1.setVisible(true);
-				panel_3.setVisible(false);
-			}
+				panel_4.setVisible(true);
+				panel_1.setVisible(false);
 
+			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				lblNewLabel_3_2_1.setForeground(Color.gray);
-
+				lblNewLabel_2_1.setForeground(Color.gray);
 			}
-
 			@Override
 			public void mouseExited(MouseEvent e) {
-				lblNewLabel_3_2_1.setForeground(Color.white);
-
+				lblNewLabel_2_1.setForeground(Color.white);
 			}
 		});
-		lblNewLabel_3_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3_2_1.setForeground(Color.WHITE);
-		lblNewLabel_3_2_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_3_2_1.setBounds(863, 42, 43, 43);
-		panel_3.add(lblNewLabel_3_2_1);
-
-		JLabel lblPersonajesOscuros = new JLabel("personajes oscuros");
-		lblPersonajesOscuros.setForeground(Color.WHITE);
-		lblPersonajesOscuros.setFont(new Font("Star Jedi", Font.PLAIN, 22));
-		lblPersonajesOscuros.setBounds(51, 105, 322, 69);
-		panel_3.add(lblPersonajesOscuros);
-		setLocationRelativeTo(table_1);
-
-		id = new JTextField();
-		id.setBounds(701, 166, 109, 20);
-		panel_3.add(id);
-		id.setColumns(10);
-
-		nombre = new JTextField();
-		nombre.setBounds(701, 255, 109, 20);
-		panel_3.add(nombre);
-		nombre.setColumns(10);
-
-		JButton boton = new JButton("Comprobar");
-		boton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (user.comparardatospersonajes(id.getText(), nombre.getText()) == 1) {
-					JOptionPane.showMessageDialog(welcome, "Eliminado correctamente", "ERROR",
-							JOptionPane.INFORMATION_MESSAGE);
-				} else {
-					JOptionPane.showMessageDialog(welcome, "No se encuentra en la tabla", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-				}
-
-			}
-		});
-		boton.setBounds(701, 364, 109, 23);
-		panel_3.add(boton);
-
-		JLabel lblNewLabel_1 = new JLabel("id");
-		lblNewLabel_1.setFont(new Font("Star Jedi", Font.PLAIN, 13));
-		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setBounds(701, 136, 86, 14);
-		panel_3.add(lblNewLabel_1);
-
-		JLabel lblNewLabel_1_1 = new JLabel("nombre");
-		lblNewLabel_1_1.setForeground(Color.WHITE);
-		lblNewLabel_1_1.setFont(new Font("Star Jedi", Font.PLAIN, 13));
-		lblNewLabel_1_1.setBounds(701, 230, 109, 14);
-		panel_3.add(lblNewLabel_1_1);
-
-		JButton btnBorrar = new JButton("Borrar");
-		btnBorrar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				user.borrarDatosPersonajes(id.getText(), nombre.getText());
-				JOptionPane.showMessageDialog(welcome, "Eliminado correctamente", "ERROR",
-						JOptionPane.INFORMATION_MESSAGE);
-				table_1.setModel(user.rellenarTablapersonajes());
-			}
-		});
-		btnBorrar.setBounds(701, 429, 109, 23);
-		panel_3.add(btnBorrar);
-
-		panel_4_1_1.setBorder(new CompoundBorder());
-		panel_4_1_1.setVisible(false);
+		lblNewLabel_2_1.setForeground(Color.WHITE);
+		lblNewLabel_2_1.setFont(new Font("Star Jedi", Font.PLAIN, 11));
+		lblNewLabel_2_1.setBounds(322, 438, 277, 14);
+		panel_1.add(lblNewLabel_2_1);
 		panel_4_1_1.setBackground(Color.BLACK);
 		panel_4_1_1.setBounds(0, 0, 906, 548);
 		panel.add(panel_4_1_1);
@@ -368,10 +296,10 @@ public class welcomenuevo extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (user.comparardatospersonajes(id.getText(), nombre.getText()) == 1) {
-					JOptionPane.showMessageDialog(welcome, "Eliminado correctamente", "ERROR",
+					JOptionPane.showMessageDialog(welcome, "Se encuentra en la tabla", "Informacion",
 							JOptionPane.INFORMATION_MESSAGE);
 				} else {
-					JOptionPane.showMessageDialog(welcome, "No se encuentra en la tabla", "ERROR",
+					JOptionPane.showMessageDialog(welcome, "No se encuentra en la tabla", "Informacion",
 							JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -442,6 +370,206 @@ public class welcomenuevo extends JFrame {
 		lblNewLabel_3_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_3_2.setBounds(0, 42, 43, 43);
 		panel_4_1_1.add(lblNewLabel_3_2);
+
+		panel_3.setVisible(false);
+		panel_3.setBackground(Color.BLACK);
+		panel_3.setBounds(0, 0, 906, 548);
+		panel.add(panel_3);
+		panel_3.setLayout(null);
+
+		table_1 = new JTable();
+		table_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+		table_1.setBounds(51, 169, 495, 336);
+		table_1.setModel(user.rellenarTablapersonajes());
+		panel_3.add(table_1);
+
+		JLabel lblNewLabel_3_2_1 = new JLabel(" ←");
+		lblNewLabel_3_2_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				panel_1.setVisible(true);
+				panel_3.setVisible(false);
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblNewLabel_3_2_1.setForeground(Color.gray);
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblNewLabel_3_2_1.setForeground(Color.white);
+
+			}
+		});
+		lblNewLabel_3_2_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3_2_1.setForeground(Color.WHITE);
+		lblNewLabel_3_2_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_3_2_1.setBounds(0, 42, 43, 43);
+		panel_3.add(lblNewLabel_3_2_1);
+
+		JLabel lblPersonajesOscuros = new JLabel("personajes oscuros");
+		lblPersonajesOscuros.setForeground(Color.WHITE);
+		lblPersonajesOscuros.setFont(new Font("Star Jedi", Font.PLAIN, 22));
+		lblPersonajesOscuros.setBounds(51, 105, 322, 69);
+		panel_3.add(lblPersonajesOscuros);
+		setLocationRelativeTo(table_1);
+
+		id = new JTextField();
+		id.setBounds(701, 166, 109, 20);
+		panel_3.add(id);
+		id.setColumns(10);
+
+		nombre = new JTextField();
+		nombre.setBounds(701, 255, 109, 20);
+		panel_3.add(nombre);
+		nombre.setColumns(10);
+
+		JButton boton = new JButton("Comprobar");
+		boton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (user.comparardatospersonajes(id.getText(), nombre.getText()) == 1) {
+					JOptionPane.showMessageDialog(welcome, "Se encuentra en la tabla", "Informacion",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(welcome, "No se encuentra en la tabla", "Informacion",
+							JOptionPane.ERROR_MESSAGE);
+				}
+
+			}
+		});
+		boton.setBounds(701, 364, 109, 23);
+		panel_3.add(boton);
+
+		JLabel lblNewLabel_1 = new JLabel("id");
+		lblNewLabel_1.setFont(new Font("Star Jedi", Font.PLAIN, 13));
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setBounds(701, 136, 86, 14);
+		panel_3.add(lblNewLabel_1);
+
+		JLabel lblNewLabel_1_1 = new JLabel("nombre");
+		lblNewLabel_1_1.setForeground(Color.WHITE);
+		lblNewLabel_1_1.setFont(new Font("Star Jedi", Font.PLAIN, 13));
+		lblNewLabel_1_1.setBounds(701, 230, 109, 14);
+		panel_3.add(lblNewLabel_1_1);
+
+		JButton btnBorrar = new JButton("Borrar");
+		btnBorrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				user.borrarDatosPersonajes(id.getText(), nombre.getText());
+				JOptionPane.showMessageDialog(welcome, "Eliminado correctamente", "Informacion",
+						JOptionPane.INFORMATION_MESSAGE);
+				table_1.setModel(user.rellenarTablapersonajes());
+			}
+		});
+		btnBorrar.setBounds(701, 429, 109, 23);
+		panel_3.add(btnBorrar);
+		panel_4.setVisible(false);
+		panel_4.setBackground(Color.BLACK);
+		panel_4.setForeground(Color.WHITE);
+
+		panel_4.setBounds(0, 0, 906, 548);
+		panel.add(panel_4);
+		panel_4.setLayout(null);
+
+		JLabel lblUsuarios = new JLabel("usuarios");
+		lblUsuarios.setForeground(Color.WHITE);
+		lblUsuarios.setFont(new Font("Star Jedi", Font.PLAIN, 22));
+		lblUsuarios.setBounds(50, 105, 322, 69);
+		panel_4.add(lblUsuarios);
+
+		table_2 = new JTable();
+		table_2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		table_2.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+		table_2.setBounds(33, 185, 495, 336);
+		table_2.setModel(user.rellenarTabla());
+		panel_4.add(table_2);
+
+		JLabel lblNewLabel_1_3_1_1 = new JLabel("nombre");
+		lblNewLabel_1_3_1_1.setForeground(Color.WHITE);
+		lblNewLabel_1_3_1_1.setFont(new Font("Star Jedi", Font.PLAIN, 13));
+		lblNewLabel_1_3_1_1.setBounds(700, 138, 86, 14);
+		panel_4.add(lblNewLabel_1_3_1_1);
+
+		nombreusuario = new JTextField();
+		nombreusuario.setColumns(10);
+		nombreusuario.setBounds(700, 163, 109, 20);
+		panel_4.add(nombreusuario);
+
+		JButton boton_1_1 = new JButton("Comprobar");
+		boton_1_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (user.comparardatos(nombreusuario.getText(), contraseñausuario.getText()) == 1) {
+					JOptionPane.showMessageDialog(welcome, "Se encuentra en la tabla", "Informacion",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(welcome, "No se encuentra en la tabla", "Informacion",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		boton_1_1.setBounds(700, 365, 109, 23);
+		panel_4.add(boton_1_1);
+
+		JButton btnBorrar_1_1 = new JButton("Borrar");
+		btnBorrar_1_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (user.comparardatos(nombreusuario.getText(), contraseñausuario.getText()) == 1) {
+					user.borrarDatos(nombreusuario.getText(), contraseñausuario.getText());
+					JOptionPane.showMessageDialog(welcome, "Eliminado correctamente", "ERROR",
+							JOptionPane.INFORMATION_MESSAGE);
+					table_2.setModel(user.rellenarTabla());
+				} else {
+					JOptionPane.showMessageDialog(welcome, "No estaba en la base de datos", "ERROR",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+
+			}
+		});
+		btnBorrar_1_1.setBounds(700, 429, 109, 23);
+		panel_4.add(btnBorrar_1_1);
+
+		JLabel lblNewLabel_1_1_2_1 = new JLabel("contraseña");
+		lblNewLabel_1_1_2_1.setForeground(Color.WHITE);
+		lblNewLabel_1_1_2_1.setFont(new Font("Star Jedi", Font.PLAIN, 13));
+		lblNewLabel_1_1_2_1.setBounds(700, 229, 109, 14);
+		panel_4.add(lblNewLabel_1_1_2_1);
+
+		contraseñausuario = new JTextField();
+		contraseñausuario.setColumns(10);
+		contraseñausuario.setBounds(700, 259, 109, 20);
+		panel_4.add(contraseñausuario);
+
+		JLabel lblNewLabel_3_2_1_1 = new JLabel(" ←");
+		lblNewLabel_3_2_1_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblNewLabel_3_2_1_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				panel_4.setVisible(false);
+				panel_1.setVisible(true);
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblNewLabel_3_2_1_1.setForeground(Color.gray);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblNewLabel_3_2_1_1.setForeground(Color.white);
+			}
+		});
+		lblNewLabel_3_2_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3_2_1_1.setForeground(Color.WHITE);
+		lblNewLabel_3_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel_3_2_1_1.setBounds(0, 44, 43, 43);
+		panel_4.add(lblNewLabel_3_2_1_1);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
 
 	}
 }

@@ -122,12 +122,12 @@ public class Usuario {
 
 	// BORRAR DATOS
 
-	public void borrarDatos(String usuario) {
+	public void borrarDatos(String usuario,String contraseña) {
 		try {
 			cn = conexion.conectar();
-			PreparedStatement stm2 = cn.prepareStatement("DELETE FROM usuarios  WHERE Usuario = ?");
+			PreparedStatement stm2 = cn.prepareStatement("DELETE FROM usuario  WHERE Usuario = ? AND CONTRASEÑA=?");
 			stm2.setString(1, usuario);
-
+			stm2.setString(2, contraseña);
 			stm2.executeUpdate();
 
 		} catch (SQLException e) {
@@ -298,7 +298,7 @@ public class Usuario {
 	// rellenar la tabla personajes oscuros
 
 	public DefaultTableModel rellenarTablapersonajes() {
-		String[] columnas = { "id", "Nombre", "Planeta", "Raza", "Edad", };
+		String[] columnas = { "id", "Nombre", "Planeta", "Raza", "Edad" };
 		DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 		try {
 			String consulta = "SELECT id, nombre, planeta_natal,raza, edad FROM personajes where luminoso = false";

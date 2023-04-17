@@ -79,6 +79,7 @@ public class loginnuevo extends JFrame {
 				int x = e.getXOnScreen();
 				int y = e.getYOnScreen();
 				login.setLocation(x - xMouse, y - yMouse);
+				
 			}
 		});
 
