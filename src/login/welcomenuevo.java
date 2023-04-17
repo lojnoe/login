@@ -317,10 +317,16 @@ public class welcomenuevo extends JFrame {
 		btnBorrar_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				user.borrarDatosPersonajes(id.getText(), nombre.getText());
-				JOptionPane.showMessageDialog(welcome, "Eliminado correctamente", "ERROR",
-						JOptionPane.INFORMATION_MESSAGE);
-				table.setModel(user.rellenarTablapersonajes());
+				
+				if (user.comparardatospersonajes(id.getText(), nombre.getText()) == 1) {
+					user.borrarDatosPersonajes(id.getText(), nombre.getText());
+					JOptionPane.showMessageDialog(welcome, "Eliminado correctamente", "ERROR",
+							JOptionPane.INFORMATION_MESSAGE);
+					table.setModel(user.rellenarTablapersonajes());
+				} else {
+					JOptionPane.showMessageDialog(welcome, "No se ha podido realizar la operacion", "ERROR",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		btnBorrar_1.setBounds(701, 429, 109, 23);
@@ -460,10 +466,16 @@ public class welcomenuevo extends JFrame {
 		btnBorrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				user.borrarDatosPersonajes(id.getText(), nombre.getText());
-				JOptionPane.showMessageDialog(welcome, "Eliminado correctamente", "Informacion",
-						JOptionPane.INFORMATION_MESSAGE);
-				table_1.setModel(user.rellenarTablapersonajes());
+				if (user.comparardatospersonajes(id.getText(), nombre.getText()) == 1) {
+					user.borrarDatosPersonajes(id.getText(), nombre.getText());
+					JOptionPane.showMessageDialog(welcome, "Eliminado correctamente", "Informacion",
+							JOptionPane.INFORMATION_MESSAGE);
+					table_1.setModel(user.rellenarTablapersonajes());
+				} else {
+					JOptionPane.showMessageDialog(welcome, "No se ha podido realizar la operacion", "ERROR",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+				
 			}
 		});
 		btnBorrar.setBounds(701, 429, 109, 23);
@@ -526,7 +538,7 @@ public class welcomenuevo extends JFrame {
 							JOptionPane.INFORMATION_MESSAGE);
 					table_2.setModel(user.rellenarTabla());
 				} else {
-					JOptionPane.showMessageDialog(welcome, "No estaba en la base de datos", "ERROR",
+					JOptionPane.showMessageDialog(welcome, "No se ha podido realizar la operacion", "ERROR",
 							JOptionPane.INFORMATION_MESSAGE);
 				}
 
