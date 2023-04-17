@@ -274,6 +274,8 @@ public class welcomenuevo extends JFrame {
 		panel_4_1_1.setLayout(null);
 
 		table = new JTable();
+		table.setBackground(Color.BLACK);
+		table.setForeground(Color.WHITE);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		table.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		table.setBounds(34, 182, 495, 336);
@@ -384,6 +386,8 @@ public class welcomenuevo extends JFrame {
 		panel_3.setLayout(null);
 
 		table_1 = new JTable();
+		table_1.setForeground(Color.WHITE);
+		table_1.setBackground(Color.BLACK);
 		table_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		table_1.setBounds(51, 169, 495, 336);
@@ -495,6 +499,8 @@ public class welcomenuevo extends JFrame {
 		panel_4.add(lblUsuarios);
 
 		table_2 = new JTable();
+		table_2.setForeground(Color.WHITE);
+		table_2.setBackground(Color.BLACK);
 		table_2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		table_2.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		table_2.setBounds(33, 185, 495, 336);
